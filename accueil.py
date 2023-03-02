@@ -47,31 +47,31 @@ app = Flask(__name__)
 def home():
     return render_template('index.html')
 
-@app.route('/gestioneo/login')
+@app.route('/login')
 def login():
     return "Page de login"
 
-@app.route('/gestioneo/inscription')
+@app.route('/inscription')
 def inscription():
     return "Page d'inscription"
 
-@app.route('/gestioneo/logements')
+@app.route('/logements')
 def offres():
     logements_list = get_logements()
     return render_template('logements.html', logements_list=logements_list)
 
-@app.route('/gestioneo/logement_<int:ID_logement>')
+@app.route('/logement_<int:ID_logement>')
 def logement(ID_logement):
     logement_info = logement_details(ID_logement)
     return render_template('logement.html', ID_logement=logement_info[0],loyer=logement_info[1], description=logement_info[2],nom=logement_info[3])
 
 
-@app.route('/gestioneo/recherche_<int:ID_logement>')
+@app.route('/recherche_<int:ID_logement>')
 def recherche(ID_logement):
      questions = questionnaire(ID_logement)
      return render_template('questionnaire.html', ID_logement=ID_logement,question_1=questions[1],question_2=questions[2],question_3=questions[3])
 
-@app.route('/gestioneo/submit_<int:ID_logement>', methods=['POST'])
+@app.route('/submit_<int:ID_logement>', methods=['POST'])
 def submit(ID_logement):
      ID_recherche=questionnaire(ID_logement)[0]
      print(ID_recherche)

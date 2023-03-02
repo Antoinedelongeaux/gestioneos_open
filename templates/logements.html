@@ -48,7 +48,7 @@
         <tbody>
             {% for logement in logements_list %}
             <tr>
-                <td><a href="/gestioneo/logement_{{ logement['id'] }}">{{ logement['nom'] }}</a></td>
+                <td><a href="/logement_{{ logement['id'] }}">{{ logement['nom'] }}</a></td>
                 <td>{{ logement['adresse'] }}</td>
                 <td>{{ logement['superficie'] }} m²</td>
             </tr>
