@@ -18,8 +18,6 @@ def get_logements():
 def logement_details(ID_logement):
     response = supabase.table('logements').select('*').eq("id", ID_logement).execute()
     first_element = response.data[0]
-
-    # Accéder à la valeur de l'attribut `critere_1_description`
     ID_logement= first_element['id']
     loyer = first_element['loyer']
     description = first_element['description']
@@ -29,10 +27,10 @@ def logement_details(ID_logement):
 def questionnaire(ID_logement) :
 
      response = supabase.table('recherches').select('*').eq("ID_logement", ID_logement).execute()
-     # Accéder au premier élément de la liste `data`
+
      first_element = response.data[0]
 
-     # Accéder à la valeur de l'attribut `critere_1_description`
+
      ID_recherche= first_element['id']
      question_1 = first_element['critere_1_description']
      question_2 = first_element['critere_2_description']
@@ -79,7 +77,6 @@ def submit(ID_logement):
      réponse_2 = request.form['Réponse_2']
      réponse_3 = request.form['Réponse_3']
      email = request.form['Réponse_4']
-     # Code pour enregistrer la réponse dans la base de données
      prospect = supabase.table("prospects").insert({'ID_recherche':ID_recherche,"reponse_1":réponse_1 , "reponse_2":réponse_2 , "reponse_3":réponse_3 , "email":email }).execute()
      assert len(prospect.data) > 0
      return "Merci pour votre réponse !"
